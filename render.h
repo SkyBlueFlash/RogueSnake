@@ -1,14 +1,15 @@
 #ifndef RNDR_H
 #define RNDR_H
-#include <iostream>
 #include <ncurses.h>
+#include "player.h"
 
 class Render {
 private:
     int height, width;
 public:
-    static void setup();
-    void render();
+    WINDOW* mainwin;
+    void setup(WINDOW *win);
+    void render(WINDOW *win, const Snake &s);
 };
 
 #endif

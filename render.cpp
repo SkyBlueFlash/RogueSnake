@@ -1,7 +1,7 @@
 #include "render.h"
 
 // called at the start of the game to initialise the main screen
-void Render::setup() {
+void Render::setup(WINDOW* win) {
     // initialize screen for ncurses
     initscr(); 
     // disable input buffer so we can get the input directly instead of waiting for the user to press Enter
@@ -21,13 +21,27 @@ void Render::setup() {
     getmaxyx(stdscr,m_rows, m_cols);    
 /*---------------------------------------------------------------------------*/
     // create a window that is m_rows-1 high (subtracted the one since we start at +1 position rather than 0)
-    // and m_cols wide at 1 (y) and 1 (x)
+    // and m_cols wide at position (1,1)
     // draw a box around the window which we use as border
 
     // the main window of the game
-    WINDOW *mainwin = newwin(m_rows-1,m_cols-1,1, 1);
-    box(mainwin, '|', '=');
+    Render::mainwin = newwin(m_rows-1,m_cols-1,1, 1);
+    box(Render::mainwin, '|', '=');
 /*---------------------------------------------------------------------------*/
     // draw changes to the window
     wrefresh(mainwin);
 }
+
+// main drawing function
+void Render::render(WINDOW *win, const Snake &s) { 
+    for (auto iter = s.body.begin(); iter != s.body.end(); ++iter)
+    {
+        if (iter == s.body.begin()) { //check if it is the head if it was print it as '@'
+            wprintw(mainwin, "@") ;
+        } else {
+            wprintw(mainwin, "-");
+        }
+    }
+    wrefresh(mainwin);
+}
+
