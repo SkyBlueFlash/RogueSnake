@@ -1,10 +1,7 @@
-#include "render.h"
+#include "game_loop.h"
 
 using namespace std;
 
 int main() {
-   Render::setup();
-   if (getch() == 'q') {
-       endwin();
-   }
+    main_loop();
 }
