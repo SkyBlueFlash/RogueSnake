@@ -1,11 +1,10 @@
 #include "game_loop.h"
 
 void main_loop() {
-Snake snake1;
 Render renderer; 
-
-renderer.setup(renderer.mainwin);
-    renderer.render(renderer.mainwin, snake1); 
+renderer.setup(renderer.mainwin); // needs to be called before creating a Snake object
+Snake snake1;
+renderer.render(renderer.mainwin, snake1); 
     if (getch() == 'q') {
        endwin();
     }

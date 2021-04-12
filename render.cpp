@@ -37,9 +37,9 @@ void Render::render(WINDOW *win, const Snake &s) {
     for (auto iter = s.body.begin(); iter != s.body.end(); ++iter)
     {
         if (iter == s.body.begin()) { //check if it is the head if it was print it as '@'
-            wprintw(mainwin, "@") ;
+            mvwaddch(mainwin, iter->y_x_pos[0],iter->y_x_pos[1], '@') ;
         } else {
-            wprintw(mainwin, "-");
+            mvwaddch(mainwin, iter->y_x_pos[0],iter->y_x_pos[1], '-') ;
         }
     }
     wrefresh(mainwin);

@@ -1,6 +1,5 @@
 #ifndef RNDR_H
 #define RNDR_H
-#include <ncurses.h>
 #include "player.h"
 
 class Render {
